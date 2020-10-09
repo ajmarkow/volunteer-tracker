@@ -3,8 +3,9 @@ require "project"
 require "rspec"
 require "pry"
 require "pg"
+require "dotenv/load"
 
-DB = PG.connect({ :dbname => "volunteer_tracker_test", :password => ENV["PGPASS"] })
+DB = PG.connect({ :dbname => "volunteer_tracker_test", :user => "postgres", :password => ENV["PG_PASS"] })
 
 RSpec.configure do |config|
   config.after(:each) do
