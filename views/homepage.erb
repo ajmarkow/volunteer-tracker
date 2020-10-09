@@ -1,0 +1,21 @@
+<h1> The Amazing Volunteer Tracker</h1>
+<hr>
+<h3 class='offset'>Create a Volunteer Project:</h3>
+<form class="form-inline" name="title" method ='post' action='/create_project'>
+  <div class="form-group">
+    <label for="title">your project name:</label>
+    <input type="text" name="title" id="" class="form-control offset" placeholder="" aria-describedby="helpId"><button type="submit" class="btn btn-primary">Create Project</button>
+    <br>
+    <small id="helpId">Make sure the name is descriptive.</small>
+  </div>
+</form>
+
+<% if @projects.any? %>
+<% @projects.each do |project| %>
+<li class='display-4'><a href='/project/project.id'><%= project.title %></a></li>
+<% end %>
+<% else %>
+<h2>No projects yet, let's create one!</h2>
+<% end %>
+<hr>
+<h3 class='offset'>Add a Volunteer to a Project</h3>

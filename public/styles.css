@@ -1,0 +1,14 @@
+.jumbotron,
+body,
+hr {
+  font-family: "Ubuntu", sans-serif;
+  background-color: purple;
+  color: white;
+  text-align: center;
+}
+.offset {
+  text-align: right;
+}
+button {
+  margin: 5%;
+}
