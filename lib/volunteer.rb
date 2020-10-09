@@ -28,4 +28,16 @@ class Volunteer
     end
     volunteers
   end
+
+  def self.find(id)
+    selected_volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};").first
+    if selected_volunteer
+      name = selected_volunteer.fetch("name")
+      id = selected_volunteer.fetch("id")
+      project_id = selected_volunteer.fetch("project_id")
+      Volunteer.new({ :name => name, :id => id, :project_id => project_id })
+    else
+      nil
+    end
+  end
 end
