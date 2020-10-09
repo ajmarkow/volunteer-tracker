@@ -20,7 +20,7 @@ get("/project/:id") do
   erb(:project)
 end
 
-get("/editproject/:id") do
+get("/project/:id/edit") do
   @project = Project.find(:id)
   erb(:editproject)
 end
@@ -32,7 +32,7 @@ post("/create_project") do
   redirect to ("/")
 end
 
-patch("/editproject/:id") do
+patch("/project/:id/edit") do
   newname = params[:title]
   @project = Project.find(:id)
   @project.update({ :title => newname, :id => nil })
