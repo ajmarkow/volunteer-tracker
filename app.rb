@@ -20,7 +20,7 @@ get("/project/:id") do
   erb(:project)
 end
 
-get("/project/:id/edit") do
+get("/project/:id/edit/") do
   @project = Project.find(:id)
   erb(:editproject)
 end
@@ -32,10 +32,25 @@ post("/create_project") do
   redirect to ("/")
 end
 
-patch("/project/:id/edit") do
+post("/project/:id/delete") do
+  id = params[:id]
+  @project = Project.find(id)
+  @project.delete()
+  erb(:homepage)
+end
+
+post("/project/:id/edit/") do
   newname = params[:title]
   @project = Project.find(:id)
   @project.update({ :title => newname, :id => nil })
   @project.save()
   redirect to ("/")
+end
+
+post("/create_volunteer") do
+  name = params[:name]
+  projectid = params[:projectid]
+  name = params[:volunteername]
+  enteredvolunteer = Volunteer.new({ :name => name, :project_id => projectid, :id => nil })
+  enteredvolunteer.save()
 end
