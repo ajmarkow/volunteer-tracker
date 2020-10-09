@@ -1,3 +1,5 @@
+require "spec_helper"
+
 class Project
   attr_accessor(:title)
   attr_reader(:id)
@@ -48,13 +50,14 @@ class Project
   end
 
   def volunteers
-    project_volunteers = DB.exec("SELECT * FROM volunteers where project_id = #{@id.to_i}")
     volunteers = []
+    project_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{@id};")
     project_volunteers.each do |entry|
-      name = entry.fetch("name")
-      project_id = entry.fetch("project_id").to_i
       id = entry.fetch("id").to_i
-      volunteers.push(Volunteer.new({ :name => name, :project_id => project_id, :id => id }))
+      volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id}")
+      name = entry.fetch("name")
+      project_id = entry.fetch("project_id")
+      volunteers.push(Volunteer.new({ :name => name, :id => id, :project_id => project_id }))
     end
     volunteers
   end

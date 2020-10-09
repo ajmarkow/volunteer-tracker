@@ -13,7 +13,7 @@ class Volunteer
   end
 
   def save
-    entry = DB.exec("INSERT INTO volunteers (name) values ('#{@name}') RETURNING id")
+    entry = DB.exec("INSERT INTO volunteers (name,project_id) values ('#{@name}','#{@project_id}') RETURNING id")
     @id = entry.first().fetch("id").to_i
   end
 
