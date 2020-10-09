@@ -33,6 +33,10 @@ Will update as development continues.
 
 Bootstrap, CSS, Embedded Ruby, Git, Ruby, Postgres SQL, SQL.
 
+## Database Diagram
+
+![] (database-diagram.png)
+
 ### License
 
 MIT License
