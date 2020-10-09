@@ -35,7 +35,7 @@ Bootstrap, CSS, Embedded Ruby, Git, Ruby, Postgres SQL, SQL.
 
 ## Database Diagram
 
-<IMG SRC='database-diagram.png'>
+<IMG SRC='database-diagram2.png'>
 
 ### License
 
