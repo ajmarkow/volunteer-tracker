@@ -1,9 +1,13 @@
 <div class='jumbotron'><h2>Change your Project Name</h2></div>
-<form class="form-inline" name="title" method ='post' action='/create_project'>
+<form class="form-inline" name="title" method ='post' action='/editproject/<%= @project.id() %>'>
+<input name="_method" type='hidden' value='patch'>
   <div class="form-group">
     <label for="title">Your New Project name:</label>
     <input type="text" name="title" id="" class="form-control offset" placeholder="" aria-describedby="helpId"><button type="submit" class="btn btn-primary">Update Project</button>
     <br>
     <small id="helpId">Make sure to tell your volunteers.</small>
   </div>
+</form>
+<form method='post' action='/<%= @project.id %>/delete_project/'>
+<button class='btn btn-danger'  type='submit'>Delete Project</button>
 </form>

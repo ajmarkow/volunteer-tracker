@@ -31,3 +31,11 @@ post("/create_project") do
   newproject.save()
   redirect to ("/")
 end
+
+patch("/editproject/:id") do
+  newname = params[:title]
+  @project = Project.find(:id)
+  @project.update({ :title => newname, :id => nil })
+  @project.save()
+  redirect to ("/")
+end
