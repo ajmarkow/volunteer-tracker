@@ -16,6 +16,10 @@ class Project
     @id = entry.first().fetch("id").to_i
   end
 
+  def delete
+    entry = DB.exec("DELETE from projects WHERE id = #{@id}")
+  end
+
   def self.all
     all_projects = DB.exec("SELECT * FROM projects")
     projects = []
@@ -36,5 +40,22 @@ class Project
     else
       nil
     end
+  end
+
+  def update(attributes)
+    @title = attributes.fetch(:title)
+    title_entry = DB.exec("UPDATE projects SET title ='#{@title}' ;")
+  end
+
+  def volunteers
+    project_volunteers = DB.exec("SELECT * FROM volunteers where project_id = #{@id.to_i}")
+    volunteers = []
+    project_volunteers.each do |entry|
+      name = entry.fetch("name")
+      project_id = entry.fetch("project_id").to_i
+      id = entry.fetch("id").to_i
+      volunteers.push(Volunteer.new({ :name => name, :project_id => project_id, :id => id }))
+    end
+    volunteers
   end
 end
