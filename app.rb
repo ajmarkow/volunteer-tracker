@@ -7,7 +7,7 @@ also_reload("lib/**/*.rb")
 require("pg")
 require "dotenv/load"
 
-DB = PG.connect({ :dbname => "volunteer_tracker", :user => "postgres", :password => ENV["PG_PASS"] })
+DB = PG.connect({ :dbname => "volunteer_tracker", :user => ENV.fetch("PGUSER"), :password => ENV.fetch("PGPASS") })
 
 get("/") do
   @projects = Project.all
@@ -15,12 +15,12 @@ get("/") do
   erb(:homepage)
 end
 
-get("/project/:id") do
+get("/projects/:id") do
   @project = Project.find(:id)
   erb(:project)
 end
 
-get("/project/:id/edit/") do
+get("/projects/:id/edit") do
   @project = Project.find(:id)
   erb(:editproject)
 end
@@ -32,14 +32,15 @@ post("/create_project") do
   redirect to ("/")
 end
 
-post("/project/:id/delete") do
+delete("/projects/:id/edit") do
   id = params[:id]
   @project = Project.find(id)
   @project.delete()
+  @projects = Project.all
   erb(:homepage)
 end
 
-post("/project/:id/edit/") do
+patch("/projects/:id/edit") do
   newname = params[:title]
   @project = Project.find(:id)
   @project.update({ :title => newname, :id => nil })
@@ -47,7 +48,7 @@ post("/project/:id/edit/") do
   redirect to ("/")
 end
 
-post("/create_volunteer") do
+post("/volunteers") do
   name = params[:name]
   projectid = params[:projectid]
   name = params[:volunteername]

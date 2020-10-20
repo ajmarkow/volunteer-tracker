@@ -12,7 +12,7 @@
 
 <% if @projects.any? %>
 <% @projects.each do |project| %>
-<li class='display-4'><a href='/project/project.id'><%= project.title %> with id <%= project.id %></a></li>
+<li class='display-4'><a href='/projects/project.id'><%= project.title %> with id <%= project.id %></a></li>
 <% end %>
 <% else %>
 <h2>No projects yet, let's create one!</h2>
@@ -20,7 +20,7 @@
 <hr>
 <h3 class='offset'>Add a Volunteer to a Project</h3>
 
-<form class="form-inline" name="title" method ='post' action='/create_volunteer'>
+<form class="form-inline" name="title" method ='post' action='/volunteers'>
   <div class="form-group">
     <label for="name">Volunteer Name:</label>
     <input type="text" name="volunteername" id="" class="form-control offset" placeholder="" aria-describedby="helpId">
