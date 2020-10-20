@@ -123,14 +123,14 @@ COPY public.volunteers (name, id, project_id) FROM stdin;
 -- Name: project_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.project_id_seq', 2422, true);
+SELECT pg_catalog.setval('public.project_id_seq', 2971, true);
 
 
 --
 -- Name: volunteer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.volunteer_id_seq', 1466, true);
+SELECT pg_catalog.setval('public.volunteer_id_seq', 1791, true);
 
 
 --
