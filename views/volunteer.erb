@@ -1,0 +1,15 @@
+<div class='jumbotron'><h2>Change your Volunteer Name</h2></div>
+<h3> Current name of the volunteer is: <%= @volunteer.name %></h3>
+<form class="form-inline" name="title" method ='post' action='/volunteers/<%= @volunteer.id %>'>
+<input name="_method" type='hidden' value='patch'>
+  <div class="form-group">
+    <label for="title">Your New Volunteer name:</label>
+    <input type="text" name="name" id="name" class="form-control offset" placeholder="" aria-describedby="helpId"><button type="submit" class="btn btn-primary">Update Volunteer</button>
+    <br>
+    <small id="helpId">Make sure to tell your volunteers.</small>
+  </div>
+</form>
+<form method='post' action='/volunteers/<%= @volunteer.id %>/edit'>
+<input name="_method" type="hidden" value="delete"> 
+<button class='btn btn-danger'  type='submit'>Delete Volunteer</button>
+</form>

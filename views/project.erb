@@ -5,4 +5,11 @@
 <button class='btn btn-danger'  type='submit'>Delete Project</button>
 </form>
 <a href ='/projects/<%= @project.id %>/edit'>Edit Project</a>
+<% if @volunteers.any? %>
+<% @volunteers.each do |volunteer| %>
+<li class='display-4'><a href='/volunteers/volunteer.id'><%= volunteer.name %> </a></li>
+<% end %>
+<% else %>
+<h2>No volunteers yet, get some folks to join!</h2>
+<% end %>
 <a href='/'>Back to the main page</a>

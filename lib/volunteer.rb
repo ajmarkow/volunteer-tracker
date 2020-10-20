@@ -29,6 +29,11 @@ class Volunteer
     volunteers
   end
 
+  def update(attributes)
+    @name = attributes.fetch(:name)
+    title_entry = DB.exec("UPDATE volunteers SET name ='#{@name}' ;")
+  end
+
   def self.find(id)
     selected_volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};").first
     if selected_volunteer
