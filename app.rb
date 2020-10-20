@@ -18,7 +18,7 @@ end
 get("/projects/:id") do
   @project = Project.find(:id)
   @volunteers = @project.volunteers()
-  erb(:project)
+  erb(:projects)
 end
 
 get("/projects/:id/edit") do
