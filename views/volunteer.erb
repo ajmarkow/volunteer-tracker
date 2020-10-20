@@ -1,6 +1,6 @@
 <div class='jumbotron'><h2>Change your Volunteer Name</h2></div>
 <h3> Current name of the volunteer is: <%= @volunteer.name %></h3>
-<form class="form-inline" name="title" method ='post' action='/volunteers/<%= @volunteer.id %>'>
+<form class="form-inline" name="name" method ='post' action='/projects/:id/volunteers/<%= @volunteer.id %>'>
 <input name="_method" type='hidden' value='patch'>
   <div class="form-group">
     <label for="title">Your New Volunteer name:</label>
@@ -9,7 +9,8 @@
     <small id="helpId">Make sure to tell your volunteers.</small>
   </div>
 </form>
-<form method='post' action='/volunteers/<%= @volunteer.id %>/edit'>
+<form method='post' action='/projects/:id/volunteers/<%= @volunteer.id %>/edit'>
 <input name="_method" type="hidden" value="delete"> 
 <button class='btn btn-danger'  type='submit'>Delete Volunteer</button>
 </form>
+<a href='/'>Back to the main page</a>
