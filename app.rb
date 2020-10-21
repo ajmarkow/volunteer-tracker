@@ -12,36 +12,39 @@ DB = PG.connect({ :dbname => "volunteer_tracker", :user => ENV.fetch("PGUSER"), 
 get("/") do
   @projects = Project.all
   @volunteer = Volunteer.all
-  erb(:homepage)
-end
-
-get("/projects/:id") do
-  @project = Project.find(:id)
-  @volunteers = @project.volunteers()
   erb(:projects)
 end
 
+get("/projects/:id") do
+  id = params[:id].to_i
+  @project = Project.find(id)
+  @volunteers = @project.volunteers()
+  erb(:project)
+end
+
 get("/projects/:id/edit") do
-  @project = Project.find(:id)
+  id = params[:id].to_i
+  @project = Project.find(id)
+  @volunteers = @project.volunteers()
   erb(:editproject)
 end
 
-post("/create_project") do
+post("/projects") do
   entered_title = params[:title]
   newproject = Project.new({ :title => entered_title, :id => nil })
   newproject.save()
   redirect to ("/")
 end
 
-delete("/projects/:id/edit") do
+delete("/projects/:id") do
   id = params[:id]
   @project = Project.find(id)
   @project.delete()
   @projects = Project.all
-  erb(:homepage)
+  erb(:projects)
 end
 
-patch("/projects/:id/edit") do
+patch("/projects/:id") do
   newname = params[:title]
   @project = Project.find(:id)
   @project.update({ :title => newname, :id => nil })
@@ -56,7 +59,8 @@ post("/projects/:id/volunteers") do
   enteredvolunteer = Volunteer.new({ :name => name, :project_id => projectid, :id => nil })
   enteredvolunteer.save()
   @projects = Project.all
-  erb(:homepage)
+  @project = Project.find(projectid)
+  erb(:projects)
 end
 
 get("/projects/:id/volunteers/:volunteerid") do
@@ -71,7 +75,7 @@ patch("/projects/:id/volunteers/:volunteerid") do
   id = params[:id].to_i
   volunteerid = params[:volunteerid].to_i
   newname = params[:name]
-  @volunteer = Volunteer.find(:id)
+  @volunteer = Volunteer.find(volunteerid)
   @volunteer.update({ :name => newname, :id => nil })
   @volunteer.save()
   erb(:volunteer)
@@ -83,5 +87,5 @@ delete("/projects/:id/volunteers/:volunteerid") do
   @volunteer = Volunteer.find(volunteerid)
   @volunteer.delete()
   @volunteers = Volunteer.all
-  erb(:homepage)
+  erb(:projects)
 end
