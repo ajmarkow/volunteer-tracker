@@ -44,7 +44,7 @@ class Project
 
   def update(attributes)
     @title = attributes.fetch(:title)
-    title_entry = DB.exec("UPDATE projects SET title ='#{@title}' ;")
+    title_entry = DB.exec("UPDATE projects SET title ='#{@title}' WHERE id = #{@id} ;")
   end
 
   def volunteers

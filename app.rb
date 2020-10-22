@@ -46,9 +46,8 @@ end
 
 patch("/projects/:id") do
   newname = params[:title]
-  @project = Project.find(:id)
-  @project.update({ :title => newname, :id => nil })
-  @project.save()
+  @project = Project.find(params[:id])
+  @project.update({ :title => newname })
   redirect to ("/")
 end
 
